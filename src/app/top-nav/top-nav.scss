@@ -1,0 +1,16 @@
+
+@import '../../global';
+
+.top-nav {
+  height: 100%;
+  background-color: $color3;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  .title-container {
+    font-size: $font-size-xlg;
+    font-weight: 600;
+    color: $color1;
+  }
+}

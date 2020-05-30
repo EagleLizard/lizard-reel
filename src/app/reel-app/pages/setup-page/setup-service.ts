@@ -1,0 +1,23 @@
+
+let reelItemKeyCounter = 0;
+
+export class ReelItem {
+  constructor(
+    public label?: string,
+    public key?: string,
+  ) {
+    if(key === undefined) {
+      this.key = `${++reelItemKeyCounter}`;
+    }
+  }
+}
+
+export class ReelConfig {
+  constructor(
+    public items?: ReelItem[],
+  ){
+    if(items === undefined) {
+      this.items = [];
+    }
+  }
+}

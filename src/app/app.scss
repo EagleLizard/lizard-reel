@@ -1,0 +1,25 @@
+@import '../global.scss';
+
+.lizard-reel-app {
+  margin-top: $top-nav-height;
+  .top-nav-container {
+    height: $top-nav-height;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+  .app-content-container {
+    position: absolute;
+    height: auto;
+    top: $top-nav-height;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    .some-page {
+      height: 200%;
+      width: 100%;
+    }
+  }
+}
