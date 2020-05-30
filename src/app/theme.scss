@@ -25,6 +25,34 @@
     background-color: rgba($theme-color, 0.9);
   }
 }
+@mixin textFieldTheme($theme-color, $theme-color-dark) {
+  .MuiInput-root {
+    &.MuiInput-underline {
+      &.Mui-focused {
+        &:after {
+          border-color: $theme-color;
+        }
+      }
+      &:after {
+        border-color: $theme-color;
+      }
+      &:before {
+        border-color: $theme-color-dark;
+      }
+    }
+  }
+  label {
+    color: rgba($theme-color-dark, 0.8);
+    &.Mui-focused {
+      color: $theme-color;
+    }
+  }
+}
+
+.MuiFormControl-root.MuiTextField-root {
+  @include textFieldTheme($color1, $color1-dark);
+}
+
 button.MuiButton-outlinedPrimary {
   @include buttonThemeOutlined($color6, $color6-dark);
 }

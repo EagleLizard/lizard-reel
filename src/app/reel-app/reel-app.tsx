@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,11 +15,11 @@ import { ReelPage } from './pages/reel-page/reel-page';
 import { ReelConfig } from './pages/setup-page/setup-service';
 
 export function ReelApp() {
+  const [ reelConfig, setReelConfig ] = useState<ReelConfig>();
 
   const handleReelConfigChange = (reelConfig: ReelConfig) => {
-    console.log(reelConfig);
+    setReelConfig(reelConfig);
   }
-  console.log('asldjadsl');
   return (
     <div className="reel-app">
       <Router>
@@ -30,16 +30,11 @@ export function ReelApp() {
           <Route path={HOME_PAGE.route}>
             <HomePage/>
           </Route>
-          <Route
-            path={SETUP_PAGE.route}
-            component={() => {
-              return (
-                <SetupPage
-                  onChange={handleReelConfigChange}
-                />
-              )
-            }}>
-            
+          <Route path={SETUP_PAGE.route}>
+            <SetupPage
+              onChange={handleReelConfigChange}
+              reelConfig={reelConfig}
+            />
           </Route>
           <Route path={REEL_PAGE.route}>
             <ReelPage/>

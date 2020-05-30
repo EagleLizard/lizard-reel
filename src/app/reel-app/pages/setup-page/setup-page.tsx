@@ -6,11 +6,11 @@ import './setup-page.scss';
 import { Page } from '../page';
 import { SETUP_PAGE } from '../page-service';
 import { ReelConfig, ReelItem } from './setup-service';
-import { SetupConfig } from './setup-config/setup-config';
+import { SetupConfig, SetupConfigProps } from './setup-config/setup-config';
 
 
-interface SetupPageProps {
-  onChange: (config: ReelConfig) => void;
+interface SetupPageProps extends SetupConfigProps {
+  
 }
 
 export function SetupPage(props: SetupPageProps) {
@@ -20,7 +20,7 @@ export function SetupPage(props: SetupPageProps) {
   }, [])
   useEffect(() => {
     setTimeout(forceUpdate);
-  });
+  }, []);
   return (
     <Page>
       <div className="setup-page">
@@ -35,6 +35,7 @@ export function SetupPage(props: SetupPageProps) {
             deferLoad && (
               <SetupConfig
                 onChange={props.onChange}
+                reelConfig={props.reelConfig}
               />
             )
           }

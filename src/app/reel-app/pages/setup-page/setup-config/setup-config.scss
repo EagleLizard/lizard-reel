@@ -1,4 +1,17 @@
 .setup-config {
+  .reel-item-mapper {
+    .reel-item-input-container {
+      align-items: center;
+      display: flex;
+      .delete-button-container {
+        margin-bottom: -18px;
+        padding-left: 10px;
+        button.MuiIconButton-root {
+          padding: 6px;
+        }
+      }
+    }
+  }
   .add-reel-item-button {
     padding: 20px 10px;
     .item-button-content {

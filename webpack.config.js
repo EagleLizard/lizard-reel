@@ -65,8 +65,8 @@ module.exports = (env, argv) => {
           test: /\.s?css$/,
           use: [
             {
-              // loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
-              loader: MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+              loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader, // creates style nodes from JS strings
+              // loader: MiniCssExtractPlugin.loader, // creates style nodes from JS strings
             },
             {
               loader: 'css-loader', // translates CSS into CommonJS
