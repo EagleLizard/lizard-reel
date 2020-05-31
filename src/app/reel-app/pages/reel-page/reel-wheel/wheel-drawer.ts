@@ -4,5 +4,7 @@ export class WheelDrawer {
   static draw(reelItems: ReelItem[], ctx: CanvasRenderingContext2D) {
     let itemSize: number;
     itemSize = 1 / reelItems.length;
+    console.log(reelItems);
+    console.log(ctx);
   }
 }

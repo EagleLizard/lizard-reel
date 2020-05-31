@@ -3,7 +3,8 @@ import React, { useEffect, useRef, ClassAttributes, LegacyRef, useState } from '
 
 import './reel-wheel.scss';
 import { ReelConfig } from '../../setup-page/setup-service';
-import { ReelRuntime } from './reel-service';
+import { ReelRuntime } from './reel-runtime';
+import { WheelDrawer } from './wheel-drawer';
 
 const WHEEL_CANVAS_WIDTH = 800;
 const WHEEL_CANVAS_HEIGHT = 600;
@@ -15,17 +16,21 @@ export interface ReelWheelProps {
 export function ReelWheel(props: ReelWheelProps) {
   const canvasRef = useRef<HTMLCanvasElement>();
   const [ context, setContext ] = useState<CanvasRenderingContext2D>();
-
-  const runtime = new ReelRuntime((totalTime) => {
-    console.log(`Total runtime: ${totalTime / 1000}s`);
-  }, 60);
+  const [ runtime, setRuntime ] = useState<ReelRuntime>();
 
   useEffect(() => {
+    let nextRuntime: ReelRuntime, nextContext: CanvasRenderingContext2D;
     console.log('useEffect in ReelWheel');
-    setContext(canvasRef.current.getContext('2d'));
-    runtime.start();
+    nextContext = canvasRef.current.getContext('2d');
+    nextRuntime = new ReelRuntime((totalTime) => {
+      console.log(`Total runtime: ${totalTime / 1000}s`);
+      WheelDrawer.draw(props.reelConfig.items, nextContext);
+    }, 60);
+    nextRuntime.start();
+    setContext(nextContext);
+    setRuntime(nextRuntime);
     return () => {
-      runtime.stop();
+      nextRuntime.stop();
     }
   }, []);
 

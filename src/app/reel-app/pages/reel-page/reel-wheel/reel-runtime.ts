@@ -7,7 +7,7 @@ export class ReelRuntime {
     private executor: (totalTime: number) => unknown,
     private fps: number,
   ) {
-    this.interval = fps / 1000;
+    this.interval = 1000 / fps;
     this.paused = false;
   }
 

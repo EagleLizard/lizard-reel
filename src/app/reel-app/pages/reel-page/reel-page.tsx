@@ -25,9 +25,13 @@ export function ReelPage(props: ReelPageProps) {
           { REEL_PAGE.label }
         </div>
         <div className="reel-wheel-container">
-          <ReelWheel
-            reelConfig={props.reelConfig}
-          />
+          {
+            deferLoad && (
+              <ReelWheel
+                reelConfig={props.reelConfig}
+              />
+            )
+          }
         </div>
       </div>
     </Page>
