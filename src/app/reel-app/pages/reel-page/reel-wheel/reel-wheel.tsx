@@ -24,7 +24,13 @@ export function ReelWheel(props: ReelWheelProps) {
     nextContext = canvasRef.current.getContext('2d');
     nextRuntime = new ReelRuntime((totalTime) => {
       console.log(`Total runtime: ${totalTime / 1000}s`);
-      WheelDrawer.draw(props.reelConfig.items, nextContext);
+      clearView(nextContext, canvasRef.current);
+      WheelDrawer.draw({
+        reelItems: props.reelConfig.items,
+        ctx: nextContext,
+        canvasWidth: canvasRef.current.width,
+        canvasHeight: canvasRef.current.height,
+      });
     }, 60);
     nextRuntime.start();
     setContext(nextContext);
@@ -46,4 +52,8 @@ export function ReelWheel(props: ReelWheelProps) {
       </div>
     </div>
   );
+}
+
+function clearView(ctx: CanvasRenderingContext2D, canvasEl: HTMLCanvasElement) {
+  ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 }
