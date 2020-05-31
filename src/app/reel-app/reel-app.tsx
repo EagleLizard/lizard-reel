@@ -13,13 +13,21 @@ import { HomePage } from './pages/home-page/home-page';
 import { SetupPage } from './pages/setup-page/setup-page';
 import { ReelPage } from './pages/reel-page/reel-page';
 import { ReelConfig } from './pages/setup-page/setup-service';
+import { getSavedReelConfig, setSavedReelConfig } from './local-store/local-store';
 
 export function ReelApp() {
   const [ reelConfig, setReelConfig ] = useState<ReelConfig>();
 
   const handleReelConfigChange = (reelConfig: ReelConfig) => {
+    setSavedReelConfig(reelConfig);
     setReelConfig(reelConfig);
   }
+
+  useEffect(() => {
+    let foundReelConfig: ReelConfig;
+    foundReelConfig = getSavedReelConfig();
+    setReelConfig(foundReelConfig);
+  }, []);
   return (
     <div className="reel-app">
       <Router>
@@ -37,7 +45,9 @@ export function ReelApp() {
             />
           </Route>
           <Route path={REEL_PAGE.route}>
-            <ReelPage/>
+            <ReelPage
+              reelConfig={reelConfig}
+            />
           </Route>
         </Switch>
       </Router>

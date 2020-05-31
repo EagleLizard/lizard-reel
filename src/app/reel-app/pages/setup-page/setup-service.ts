@@ -6,9 +6,14 @@ export class ReelItem {
     public label?: string,
     public key?: string,
   ) {
-    if(key === undefined) {
-      this.key = `${++reelItemKeyCounter}`;
+    let parsedKey: number;
+    if(key !== undefined) {
+      parsedKey = +key;
+      if(parsedKey > reelItemKeyCounter) {
+        reelItemKeyCounter = parsedKey - 1;
+      }
     }
+    this.key = `${++reelItemKeyCounter}`
   }
 }
 

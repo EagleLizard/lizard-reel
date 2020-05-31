@@ -146,7 +146,7 @@ export function SetupConfig(props: SetupConfigProps) {
           onClick={() => {
             handleSpinButtonClick();
           }}>
-          SPIN
+          Begin
         </Button>
       </div>
     </div>
